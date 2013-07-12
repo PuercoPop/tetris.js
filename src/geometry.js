@@ -22,28 +22,28 @@ function Point(x, y) {
       return Math.sqrt(x * x + y * y);
     },
 
-    above: function(point) {
+    isAbove: function(point) {
       if (this.y < point.y) {
         return true;
       } else {
         return false;
       }
     },
-    below: function(point) {
+    isBelow: function(point) {
       if (this.y > point.y) {
         return true;
       } else {
         return false;
       }
     },
-    left: function(point) {
+    isLeftOf: function(point) {
       if (this.x < point.x) {
         return true;
       } else {
         return false;
       }
     },
-    right: function(point) {
+    isRightOf: function(point) {
       if (this.x > point.x) {
         return true;
       } else {
@@ -72,16 +72,32 @@ function Rect(point1, point2){
     },
 
     pointInside: function(point){
-      if (this.upperLeftCorner.above(point) &&
-          this.upperLeftCorner.left(point) &&
-          this.lowerRightCorner.below(point) &&
-          this.lowerRightCorner.right(point)) {
+      if (this.upperLeftCorner.isAbove(point) &&
+          this.upperLeftCorner.isLeftOf(point) &&
+          this.lowerRightCorner.isBelow(point) &&
+          this.lowerRightCorner.isRightOf(point)) {
         return true;
       } else {
         return false;
       }
     },
-    rectCollide: function(rect){
+    overlaps: function(rect){
+      if (this.lowerRightCorner.isBelow(rect.upperLeftCorner) &&
+          this.lowerRightCorner.isRightOf(rect.upperLeftCorner)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    
+    get height() {
+      return Math.abs(this.upperLeftCorner.y - this.lowerRightCorner.y);
+    },
+    get width() {
+      return Math.abs(this.upperLeftCorner.x - this.lowerRightCorner.x);
+    },
+    get area() {
+      return this.height * this.width;
     }
   }
 };
