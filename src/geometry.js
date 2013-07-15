@@ -26,28 +26,28 @@ Point.prototype = {
   },
 
   isAbove: function(point) {
-    if (this.y < point.y) {
+    if (this.y <= point.y) {
       return true;
     } else {
       return false;
     }
   },
   isBelow: function(point) {
-    if (this.y > point.y) {
+    if (this.y >= point.y) {
       return true;
     } else {
       return false;
     }
   },
   isLeftOf: function(point) {
-    if (this.x < point.x) {
+    if (this.x <= point.x) {
       return true;
     } else {
       return false;
     }
   },
   isRightOf: function(point) {
-    if (this.x > point.x) {
+    if (this.x >= point.x) {
       return true;
     } else {
       return false;
